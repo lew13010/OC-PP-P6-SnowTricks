@@ -1,0 +1,31 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+
+{% block body %}
+    {% block fos_user_content %}
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        <div class="form-group">
+            {{ form_label(form.email, 'Email') }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.username, 'Login') }}
+            {{ form_widget(form.username) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.plainPassword.first, 'Password') }}
+            {{ form_widget(form.plainPassword.first) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.plainPassword.second, 'Password') }}
+            {{ form_widget(form.plainPassword.second) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.imageFile, 'Avatar') }}
+            {{ form_widget(form.imageFile) }}
+        </div>
+        <div>
+            <input type="submit" value="Enregistrer" class="btn btn-success"/>
+        </div>
+        {{ form_end(form) }}
+    {% endblock fos_user_content %}
+{% endblock %}
