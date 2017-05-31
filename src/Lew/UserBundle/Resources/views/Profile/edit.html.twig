@@ -1,0 +1,31 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+{% form_theme form
+'LewUserBundle:theme:avatar.html.twig'
+%}
+{% block body %}
+    {% block fos_user_content %}
+        {% trans_default_domain 'FOSUserBundle' %}
+
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        <div class="form-group">
+            {{ form_label(form.email, 'Email') }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.username, 'Login') }}
+            {{ form_widget(form.username) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.imageFile, 'Avatar') }}
+            {{ form_widget(form.imageFile) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.current_password, 'Password') }}
+            {{ form_widget(form.current_password) }}
+        </div>
+        <div>
+            <input type="submit" value="Enregistrer" class="btn btn-success"/>
+        </div>
+        {{ form_end(form) }}
+    {% endblock fos_user_content %}
+{% endblock %}

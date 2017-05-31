@@ -1,0 +1,12 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+
+{% block body %}
+    {% block fos_user_content %}
+        <div class="fos_user_user_show">
+            <p>Login : <b>{{ user.username }}</b></p>
+            <p>Email : <b>{{ user.email }}</b></p>
+            <p>Avatar: <img src="{{ asset('uploads/avatar/') }}{{ user.imageName }}" height="100px" width="100px"/></p>
+        </div>
+        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">Modifier</a>
+    {% endblock fos_user_content %}
+{% endblock %}

@@ -1,0 +1,3 @@
+lew_user_homepage:
+    path:     /
+    defaults: { _controller: LewUserBundle:Default:index }
