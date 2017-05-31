@@ -1,0 +1,140 @@
+users:
+    user:
+        mail: 'user@user.com'
+        username: 'user'
+        password: 'user'
+        role: 'ROLE_USER'
+        avatar: 'user.png'
+    admin:
+        mail: 'admin@admin.com'
+        username: 'admin'
+        password: 'admin'
+        role: 'ROLE_ADMIN'
+        avatar: 'anonymous-512.png'
+
+categories:
+    name:
+        - 'Grabs'
+        - 'Flips'
+        - 'Rotations'
+        - 'Rotations Désaxées'
+        - 'Slides'
+
+tricks:
+    mute:
+        name: 'Mute'
+        description: 'Saisie de la carre frontside de la planche entre les deux pieds avec la main avant.'
+        category: 'Grabs'
+    indy:
+        name: 'Indy'
+        description: 'Saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière.'
+        category: 'Grabs'
+    tail-grab:
+        name: 'Tail Grab'
+        description: 'Saisie de la partie arrière de la planche, avec la main arrière.'
+        category: 'Grabs'
+    nose-grab:
+        name: 'Nose Grab'
+        description: 'Saisie de la partie avant de la planche, avec la main avant.'
+        category: 'Grabs'
+    180:
+        name: '180'
+        description: "Un 180 désigne un demi-tour, soit 180 degrés d'angle."
+        category: 'Rotations'
+    360:
+        name: '360'
+        description: 'Trois six pour un tour complet.'
+        category: 'Rotations'
+    front-flip:
+        name: 'Front Flip'
+        description: "Une rotation verticale vers l'avant."
+        category: 'Flips'
+    back-flip:
+        name: 'Back Flip'
+        description: "Une rotation verticale vers l'arrière."
+        category: 'Flips'
+    corkscrew:
+        name: 'Corkscrew'
+        description: 'Une rotation désaxée est une rotation initialement horizontale mais lancée avec un mouvement des épaules particulier qui désaxe la rotation.'
+        category: 'Rotations Désaxées'
+
+images:
+    image1:
+        name: 'Trick-Indy-Grab.jpg'
+        trick: 'indy'
+    image2:
+        name: 'Trick-Mute-Grab.jpg'
+        trick: 'mute'
+
+videos:
+    video1:
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/CA5bURVJ5zk" frameborder="0" allowfullscreen></iframe>'
+        trick: 'Mute'
+    video2:
+        url: '<iframe frameborder="0" width="320" height="180" src="//www.dailymotion.com/embed/video/x3rqao8" allowfullscreen></iframe>'
+        trick: 'Mute'
+    video3:
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/51sQRIK-TEI" frameborder="0" allowfullscreen></iframe>'
+        trick: 'Mute'
+
+commentaires:
+    post1:
+        date: '2017-05-23 14:20:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post2:
+        date: '2017-05-23 14:21:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
+    post3:
+        date: '2017-05-23 14:22:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post4:
+        date: '2017-05-23 14:23:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
+    post5:
+        date: '2017-05-23 14:24:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post6:
+        date: '2017-05-23 14:25:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
+    post7:
+        date: '2017-05-23 14:26:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post8:
+        date: '2017-05-23 14:27:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
+    post9:
+        date: '2017-05-23 14:24:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post10:
+        date: '2017-05-23 14:25:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
+    post11:
+        date: '2017-05-23 14:26:00'
+        message: 'Bonjour tout le monde.'
+        user: 'user'
+        trick: 'Mute'
+    post12:
+        date: '2017-05-23 14:27:00'
+        message: 'Bonjour et bienvenue a toi.'
+        user: 'admin'
+        trick: 'Mute'
