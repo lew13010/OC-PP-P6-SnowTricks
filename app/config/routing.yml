@@ -1,0 +1,10 @@
+lew_st:
+    resource: "@LewSTBundle/Resources/config/routing.yml"
+    prefix:   /
+
+lew_user:
+    resource: "@LewUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

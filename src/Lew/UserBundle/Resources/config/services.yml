@@ -1,0 +1,13 @@
+services:
+#    lew_user.example:
+#        class: Lew\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    lew.form.registration:
+        class: Lew\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: lew_user_registration }
+
+    lew.form.profile:
+        class: Lew\UserBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: lew_user_profile }
