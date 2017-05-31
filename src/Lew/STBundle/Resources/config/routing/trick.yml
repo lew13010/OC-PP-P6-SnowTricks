@@ -1,0 +1,29 @@
+trick_index:
+    path:     /
+    defaults: { _controller: "LewSTBundle:Trick:index" }
+    methods:  GET
+
+trick_show:
+    path:     trick/show/{slug}/{page}
+    defaults: { _controller: "LewSTBundle:Trick:show", page: 1 }
+    methods:  [GET, POST]
+
+trick_new:
+    path:     trick/new
+    defaults: { _controller: "LewSTBundle:Trick:new" }
+    methods:  [GET, POST]
+
+trick_edit:
+    path:     trick/edit/{slug}
+    defaults: { _controller: "LewSTBundle:Trick:edit" }
+    methods:  [GET, POST]
+
+trick_delete:
+    path:     trick/delete/{slug}
+    defaults: { _controller: "LewSTBundle:Trick:delete" }
+    methods:  DELETE
+
+trick_confirmation:
+    path:     trick/confirmation/{slug}
+    defaults: { _controller: "LewSTBundle:Trick:confirmationDelete" }
+    methods:  [GET, POST]

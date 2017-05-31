@@ -1,0 +1,48 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+{% form_theme edit_form
+'LewSTBundle:theme:jquery.collection.html.twig'
+%}
+{% block body %}
+    <h1>Edition de Trick</h1>
+    <div class="well">
+        {{ form_start(edit_form) }}
+
+        {{ form_errors(edit_form) }}
+
+        {{ form_label(edit_form.name, 'Nom') }}
+        {{ form_widget(edit_form.name, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(edit_form.description, 'Description') }}
+        {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(edit_form.category, 'Categorie') }}
+        {{ form_widget(edit_form.category, {'attr': {'class': 'form-control'}}) }}
+
+        <br>
+        {{ form_row(edit_form.images) }}
+        <br>
+        {{ form_row(edit_form.videos) }}
+        <br>
+
+
+        <input type="submit" value="Valider" class="btn btn-success"/>
+        {{ form_end(edit_form) }}
+        <hr>
+        {{ form_start(delete_form) }}
+        <a href="{{ path('trick_show', {'slug': trick.slug}) }}" class="btn btn-default">Voir {{ trick.name }}</a>
+        <a href="{{ path('trick_index') }}" class="btn btn-default">Retour Liste</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    'bundles/lewst/js/jquery.collection.js'
+    'bundles/lewst/js/prototype_image.js'
+    'bundles/lewst/js/prototype_video.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
