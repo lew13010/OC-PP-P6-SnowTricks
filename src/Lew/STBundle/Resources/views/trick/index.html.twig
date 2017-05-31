@@ -1,0 +1,56 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Tricks list</h1>
+
+
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success" role="alert">
+        {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        {% for trick in tricks %}
+            <div class="col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <a href="{{ path('trick_show', { 'slug': trick.slug }) }}">
+                        {% for image in trick.images %}
+                            {% if loop.first %}
+                                <img src="{{ asset('uploads/img/') }}{{ image.imageName }}" alt="...">
+                            {% endif %}
+                        {% else %}
+                            <img src="{{ asset('uploads/img/default.png') }}" alt="...">
+                        {% endfor %}
+                    </a>
+                    <div class="caption">
+                        <h3><a href="{{ path('trick_show', { 'slug': trick.slug }) }}">{{ trick.name | upper }}</a></h3>
+                        <p>{{ trick.description[:60] }}{% if trick.description|length > 60 %}…{% endif %}</p>
+                        {% if is_granted('ROLE_USER') %}
+                            <p class="text-center">
+                                <a href="{{ path('trick_edit', { 'slug': trick.slug }) }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-pencil fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                    </span>
+                                </a> |
+                                <a href="{{ path('trick_confirmation', { 'slug': trick.slug }) }}">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-trash-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('trick_new') }}" class="btn btn-default">Ajouter un Trick</a>
+        {% endif %}
+{% endblock %}

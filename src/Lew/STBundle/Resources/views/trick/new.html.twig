@@ -1,0 +1,49 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+{% form_theme form
+'LewSTBundle:theme:jquery.collection.html.twig'
+'LewSTBundle:theme:advanced-theme.html.twig'
+%}
+{% block body %}
+
+    <h1>Création de Trick</h1>
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    <div class="well">
+        {{ form_start(form) }}
+
+        {{ form_label(form.name, 'Nom') }}
+        {{ form_widget(form.name) }}
+
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+
+        {{ form_label(form.category, 'Categorie') }}
+        {{ form_widget(form.category) }}
+        <br>
+        {{ form_widget(form.images) }}
+        <br>
+        {{ form_widget(form.videos) }}
+        <br>
+
+        {{ form_widget(form._token) }}
+        <a href="{{ path('trick_index') }}" class="btn btn-default">Retour Liste</a>
+        <input type="submit" value="Valider" class="btn btn-success"/>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    'bundles/lewst/js/jquery.collection.js'
+    'bundles/lewst/js/prototype_image.js'
+    'bundles/lewst/js/prototype_video.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+

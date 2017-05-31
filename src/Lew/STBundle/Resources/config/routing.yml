@@ -1,0 +1,7 @@
+lew_st_trick:
+    resource: "@LewSTBundle/Resources/config/routing/trick.yml"
+    prefix:   /
+
+lew_st_category:
+    resource: "@LewSTBundle/Resources/config/routing/category.yml"
+    prefix:   /category

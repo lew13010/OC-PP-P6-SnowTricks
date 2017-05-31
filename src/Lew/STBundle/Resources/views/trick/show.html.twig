@@ -1,0 +1,177 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .edit {
+            padding: 0px 4px;
+            width: auto;
+            display: inline-block;
+            font-size: 20px;
+            line-height: 40px;
+            vertical-align: 7px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <h1>{{ trick.name }}
+            {% if is_granted('ROLE_USER') %}
+                <span class="edit">
+                <a href="{{ path('trick_edit', { 'slug': trick.slug }) }}"><i class="fa fa-pencil"
+                                                                              aria-hidden="true"></i></a> |
+                <a href="{{ path('trick_confirmation', { 'slug': trick.slug }) }}"><i class="fa fa-trash-o"
+                                                                                      aria-hidden="true"></i></a>
+            </span>
+            {% endif %}
+        </h1>
+
+
+        <hr>
+        <p>Categorie : <i>{{ trick.category.name }}</i></p>
+        <p>{{ trick.description }}</p>
+    </div>
+
+
+    <div class="row">
+    {% for image in trick.images %}
+        {% if image.imageName != null %}
+            {% if loop.first %}
+                <div class="col-sm-6">
+                <h2>Images</h2>
+                <div class="col-sm-12">
+                    <img src="{{ absolute_url(asset('/uploads/img/')) }}{{ image.imageName }}" class="img img-responsive"
+                         style=" width:100%; height:295px">
+                </div>
+            {% else %}
+                <div class="col-sm-4">
+                    <img src="{{ absolute_url(asset('/uploads/img/')) }}{{ image.imageName }}" class="img img-responsive"
+                         style=" width:100%; height:100%">
+                </div>
+            {% endif %}{# loop.first #}
+            {% if loop.last %}
+                </div>
+            {% endif %}{# loop.last #}
+        {% endif %}{# image.image != null #}
+    {% endfor %}
+
+
+    {% for video in trick.videos %}
+    {% if video.code != null %}
+    {% if loop.first %}
+    <div class="col-sm-6">
+        <h2>Videos</h2>
+        <div class="col-sm-12">
+            {% else %}
+            <div class="col-sm-6">
+                {% endif %}{# loop.first #}
+                <div class="embed-responsive embed-responsive-16by9">
+                    {% if video.platform == 'dailymotion' %}
+                        <iframe class="embed-responsive-item" height="200px"
+                                src="//www.dailymotion.com/embed/video/{{ video.code }}"></iframe>
+                    {% endif %}{# dailymotion #}
+                    {% if video.platform == 'youtube' %}
+                        <iframe class="embed-responsive-item" height="200px"
+                                src="https://www.youtube.com/embed/{{ video.code }}"></iframe>
+                    {% endif %}{# youtube #}
+                </div>
+            </div>
+            {% if loop.last %}
+        </div>
+        {% endif %}{# loop.last #}
+        {% endif %}{# video.code != null #}
+        {% endfor %}
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <h2>Commentaires</h2>
+        {% if is_granted('ROLE_USER') %}
+            {% for message in app.session.flashbag.get('info') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.message, 'Ajouter un commentaire') }}
+                {{ form_widget(form.message) }}
+            </div>
+            <input type="submit" value="Envoyer" class="btn btn-success"/>
+            {{ form_end(form) }}
+            {% else %}
+            <p>Pour poster un message veuillez vous <a href="{{ path('fos_user_security_login') }}">identifier</a> / <a
+                        href="{{ path('fos_user_registration_register') }}">enregistrer</a></p>
+        {% endif %}
+        <hr>
+    </div>
+
+    {% if pagination > 1 %}
+    <div class="row">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if page > 1 %}
+                <li>
+                    <a href="{{ path('trick_show', { 'slug': trick.slug, 'page': page-1 }) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for i in 1..pagination %}
+                <li {% if  page == i %}class="active"{% endif %}><a href="{{ path('trick_show', { 'slug': trick.slug, 'page': i }) }}">{{ i }}</a></li>
+            {% endfor %}
+
+            {% if page < pagination %}
+                <li>
+                    <a href="{{ path('trick_show', { 'slug': trick.slug, 'page': page+1 }) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+        {% for post in posts %}
+            <div class="panel panel-default">
+                <div class="panel-heading"><img src="{{ asset('/uploads/avatar/') }}{% if post.user.imageName != '' %}{{ post.user.imageName }}{% else %}default.png{% endif %}"
+                                                width="50"
+                                                height="50" class="img-circle"><b>{{ post.user }}</b>
+                    | {{ post.date|date("d/m/Y - H:i") }}</div>
+                <div class="panel-body">
+                    {{ post.message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% if pagination > 1 %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if page > 1 %}
+                    <li>
+                        <a href="{{ path('trick_show', { 'slug': trick.slug, 'page': page-1 }) }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for i in 1..pagination %}
+                    <li {% if  page == i %}class="active"{% endif %}><a href="{{ path('trick_show', { 'slug': trick.slug, 'page': i }) }}">{{ i }}</a></li>
+                {% endfor %}
+
+                {% if page < pagination %}
+                    <li>
+                        <a href="{{ path('trick_show', { 'slug': trick.slug, 'page': page+1 }) }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+{% endblock %}
