@@ -1,7 +1,7 @@
 # OC-PP-P6-SnowTricks
 [Projet] Développez de A à Z le site communautaire SnowTricks
 
-## REQUIREMENTS
+## DEPENDENCES
 
 * FOSUserBundle (users management)
 * StofDoctrineExtensionsBundle (trick slug)
@@ -9,6 +9,11 @@
 * AsseticBundle (assets management)
 
 ## INSTALLATION
+
+```
+$ php composer install
+```
+
 ### DATABASE
 
 Create database:

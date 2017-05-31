@@ -48,3 +48,7 @@
 */Entity/*~
 
 /.idea
+
+src/Lew/STBundle/Entity/Post\.php~
+
+*.php~
