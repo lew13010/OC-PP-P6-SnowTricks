@@ -1,0 +1,9 @@
+{% extends 'LewSTBundle::layout.html.twig' %}
+
+{% block body %}
+    Voulez-vous supprimer définitivement le trick : <b>{{ trick }}</b>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Supprimer" class="btn btn-danger">
+    <a href="{{ path('trick_index') }}" class="btn btn-default">Annuler</a>
+    {{ form_end(delete_form) }}
+{% endblock %}
