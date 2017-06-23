@@ -49,6 +49,21 @@ class LoadCommand extends Command implements ContainerAwareInterface
         $repoTrick = $this->container->get('doctrine')->getManager()->getRepository('LewSTBundle:Trick');
         $repoUser = $this->container->get('doctrine')->getManager()->getRepository('LewUserBundle:User');
         $date = new \DateTime();
+        $rootDir = $this->container->get('kernel')->getRootDir();
+
+        $output->writeln([
+            '============',
+            'Folders Creator',
+            '============',
+        ]);
+        mkdir($rootDir . '/../Web/uploads/');
+        $output->writeln("Web/uploads/");
+        mkdir($rootDir . '/../Web/uploads/avatar/');
+        $output->writeln("Web/uploads/avatar/");
+        mkdir($rootDir . '/../Web/uploads/img/');
+        $output->writeln("Web/uploads/img");
+        copy( $rootDir . '/../src/Lew/STBundle/Resources/uploads/avatar/default.png' , $rootDir . '/../Web/uploads/avatar/default.png');
+        copy( $rootDir . '/../src/Lew/STBundle/Resources/uploads/img/default.png' , $rootDir . '/../Web/uploads/img/default.png');
 
         $output->writeln([
             '============',
@@ -58,6 +73,7 @@ class LoadCommand extends Command implements ContainerAwareInterface
         $value = Yaml::parse(file_get_contents(__DIR__.'/file.yml'));
 
         foreach ($value['users'] as $utilisateur) {
+
             $user = new User();
             $user->setEnabled(true);
             $user->setEmail($utilisateur['mail']);
@@ -71,7 +87,7 @@ class LoadCommand extends Command implements ContainerAwareInterface
             $user->setUpdatedAt($date);
 
             $em->persist($user);
-
+            copy( $rootDir . '/../src/Lew/STBundle/Resources/uploads/avatar/' .$utilisateur['avatar'] , $rootDir . '/../Web/uploads/avatar/' . $utilisateur['avatar']);
             $output->writeln($utilisateur['username']);
         }
 
@@ -133,6 +149,7 @@ class LoadCommand extends Command implements ContainerAwareInterface
             $image->setTrick($trick[0]);
 
             $em->persist($image);
+            copy( $rootDir . '/../src/Lew/STBundle/Resources/uploads/img/' .$images['name'] , $rootDir . '/../Web/uploads/img/' . $images['name']);
 
             $output->writeln($image->getImageName());
         }
@@ -161,7 +178,7 @@ class LoadCommand extends Command implements ContainerAwareInterface
             '============',
             '',
             '============',
-            'Video Creator',
+            'Post Creator',
             '============',
         ]);
 
